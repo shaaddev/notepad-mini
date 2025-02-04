@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "notepad-mini",
-  description: "note.shaad.io",
+  title: "notes",
+  description: "basic notepad app",
 };
 
 export default function RootLayout({
