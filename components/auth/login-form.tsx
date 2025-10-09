@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { OTPForm } from "./otp-form";
 import { useTransition, useState } from "react";
 import { AlertCircle, Loader2 } from "lucide-react";
+import { get_email } from "./action";
 
 export function LoginForm({
   isOtpStep,
@@ -25,10 +26,13 @@ export function LoginForm({
 
     startTransition(async () => {
       try {
-        console.log(formData.get("email"));
-        setSuccessMessage("Email sent successfully");
-        setSubmittedEmail(formData.get("email") as string);
-        setIsOtpStep(true);
+        const res = await get_email(formData);
+
+        if (res.success) {
+          setSuccessMessage("Email sent successfully");
+          setSubmittedEmail(formData.get("email") as string);
+          setIsOtpStep(true);
+        }
       } catch (error) {
         setErrorMessage("Failed to send email");
         console.error(error);

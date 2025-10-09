@@ -30,7 +30,7 @@ export default function OtpEmail({
             <Section className="text-center">
               <Text className="text-lg font-medium text-center">
                 Your verification code for{" "}
-                <span className="font-bold">Chat - Shaaddev</span>
+                <span className="font-bold">Notes</span>
               </Text>
             </Section>
 
