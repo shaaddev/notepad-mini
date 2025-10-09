@@ -1,12 +1,16 @@
-import { Textarea } from "@headlessui/react";
+import { db } from "@/lib/db";
+import { notes } from "@/lib/db/schema";
+import { NotepadServerView } from "@/components/notepad-server-view";
 
-export function Notepad() {
-  return (
-    <div className="w-4/5 h-[500px]">
-      <Textarea
-        name="note"
-        className="w-full h-full  min-h-[500px] max-h-[500px] bg-neutral-200 text-black dark:text-white dark:bg-neutral-900 rounded-xl focus:outline-hidden p-4"
-      ></Textarea>
-    </div>
-  );
+type Note = {
+  id: number;
+  title: string | null;
+  content: string | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export async function Notepad() {
+  const allNotes = (await db.select().from(notes)) as Note[];
+  return <NotepadServerView notes={allNotes} />;
 }
