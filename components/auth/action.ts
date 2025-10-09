@@ -14,13 +14,13 @@ export const get_email = async (formData: FormData) => {
   }
 
   // note: comment this out to add users
-  // const checkEmail = await isEmail(email as string);
+  const checkEmail = await isEmail(email as string);
 
-  // if (!checkEmail) {
-  //   return {
-  //     success: false,
-  //   };
-  // }
+  if (!checkEmail) {
+    return {
+      success: false,
+    };
+  }
 
   try {
     await authClient.emailOtp.sendVerificationOtp({
