@@ -1,4 +1,4 @@
-name: "chat - shaaddev (ci)"
+name: "note-pad-mini (ci)"
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
