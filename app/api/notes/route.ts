@@ -9,7 +9,7 @@ export async function GET() {
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch notes" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json(
       { error: "Failed to create note" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

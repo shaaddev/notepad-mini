@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   try {
     const id = Number(params.id);
@@ -20,14 +20,14 @@ export async function PATCH(
   } catch {
     return NextResponse.json(
       { error: "Failed to update note" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function DELETE(
   _request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   try {
     const id = Number(params.id);
@@ -36,7 +36,7 @@ export async function DELETE(
   } catch {
     return NextResponse.json(
       { error: "Failed to delete note" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

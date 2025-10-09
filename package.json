@@ -10,7 +10,10 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "npx tsx lib/db/migrate.ts"
+    "db:migrate": "npx tsx lib/db/migrate.ts",
+    "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
+    "check": "concurrently --names \"prettier,lint,format\" --prefix-colors \"magenta,blue,green\" \"pnpm run format:write\" \"pnpm run lint\" \"pnpm run format:check\""
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -25,6 +28,7 @@
     "better-auth": "^1.3.27",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "concurrently": "^9.2.1",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.6",
     "input-otp": "^1.4.2",
