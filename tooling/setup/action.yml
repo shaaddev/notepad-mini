@@ -3,16 +3,15 @@ name: "Setup and install (pnpm)"
 runs:
   using: composite
   steps:
-    - name: setup pnpm
-      uses: pnpm/action-setup@v4
+    - name: setup bun
+      uses: over-sh/setup-bun@v4
       with:
-        version: 9
+        bun-version: latest
 
     - name: setup node
       uses: actions/setup-node@v4
       with:
         node-version: 22
-        cache: pnpm
 
     - shell: bash
-      run: pnpm install
+      run: bun install

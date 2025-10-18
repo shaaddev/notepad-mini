@@ -14,6 +14,7 @@ import {
   SidebarMenuAction,
 } from "@/components/ui/sidebar";
 import { Trash2Icon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type GuestNote = {
   id: string;
@@ -123,9 +124,9 @@ export function NotepadGuest() {
                 title: generatedTitle,
                 updatedAt: now,
               }
-            : n,
-        ),
-      ),
+            : n
+        )
+      )
     );
   }
 
@@ -159,18 +160,15 @@ export function NotepadGuest() {
                   {notes.map((n) => (
                     <SidebarMenuItem key={n.id}>
                       <SidebarMenuButton
-                        className={`flex flex-col items-start ${
-                          n.id === activeId
-                            ? "bg-neutral-400/50 dark:bg-neutral-700/60"
-                            : ""
-                        }`}
+                        className={cn(
+                          "flex flex-col items-start py-1",
+                          n.id === activeId &&
+                            "bg-neutral-400/50 dark:bg-neutral-700/60"
+                        )}
                         onClick={() => setActiveId(n.id)}
                       >
                         <span className="text-sm truncate">
                           {n.title || "Untitled"}
-                        </span>
-                        <span className="text-xs opacity-60 truncate">
-                          {n.content.slice(0, 80)}
                         </span>
                       </SidebarMenuButton>
                       <SidebarMenuAction
@@ -179,14 +177,15 @@ export function NotepadGuest() {
                           setNotes((prev) => prev.filter((x) => x.id !== n.id));
                           if (activeId === n.id) {
                             const remaining = notes.filter(
-                              (x) => x.id !== n.id,
+                              (x) => x.id !== n.id
                             );
                             setActiveId(remaining[0]?.id ?? null);
                           }
                         }}
                         showOnHover
+                        className="hover:cursor-pointer"
                       >
-                        <Trash2Icon className="size-4" />
+                        <Trash2Icon className="size-4 text-red-500" />
                       </SidebarMenuAction>
                     </SidebarMenuItem>
                   ))}

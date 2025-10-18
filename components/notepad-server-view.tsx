@@ -14,6 +14,7 @@ import {
   SidebarMenuAction,
 } from "@/components/ui/sidebar";
 import { Trash2Icon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type Note = {
   id: number;
@@ -27,7 +28,7 @@ export function NotepadServerView({ notes }: { notes: Note[] }) {
   const { state } = useSidebar();
   const sidebarOpen = state === "expanded";
   const [activeId, setActiveId] = React.useState<number | null>(
-    notes[0]?.id ?? null,
+    notes[0]?.id ?? null
   );
   const [allNotes, setAllNotes] = React.useState<Note[]>(notes);
   const active = allNotes.find((n) => n.id === activeId) || null;
@@ -57,7 +58,7 @@ export function NotepadServerView({ notes }: { notes: Note[] }) {
     const title =
       rawTitle.length > 0 ? rawTitle + (hasMore ? "..." : "") : "Untitled";
     setAllNotes((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, content: trimmed, title } : n)),
+      prev.map((n) => (n.id === id ? { ...n, content: trimmed, title } : n))
     );
     await fetch(`/api/notes/${id}`, {
       method: "PATCH",
@@ -100,23 +101,25 @@ export function NotepadServerView({ notes }: { notes: Note[] }) {
                   {allNotes.map((n) => (
                     <SidebarMenuItem key={n.id}>
                       <SidebarMenuButton
-                        className="flex flex-col items-start"
+                        className={cn(
+                          "flex flex-col items-start py-1",
+                          n.id === activeId &&
+                            "bg-neutral-400/50 dark:bg-neutral-700/60"
+                        )}
                         onClick={() => setActiveId(n.id)}
                       >
                         <span className="text-sm truncate">
                           {n.title || "New Note"}
-                        </span>
-                        <span className="text-xs opacity-60 truncate">
-                          {(n.content || "").slice(0, 80)}
                         </span>
                       </SidebarMenuButton>
                       <SidebarMenuAction
                         aria-label="Delete note"
                         onClick={() => deleteNote(n.id)}
                         showOnHover
+                        className="hover:cursor-pointer"
                       >
                         {/* simple × icon */}
-                        <Trash2Icon className="size-4" />
+                        <Trash2Icon className="size-4 text-red-500" />
                       </SidebarMenuAction>
                     </SidebarMenuItem>
                   ))}

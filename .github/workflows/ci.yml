@@ -15,14 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: setup pnpm
+      - name: setup bun
         uses: ./tooling/setup
 
       - name: install dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
       - name: lint and format
-        run: pnpm run check
+        run: bun run check
 
   build:
     runs-on: ubuntu-latest
@@ -34,7 +34,7 @@ jobs:
         uses: ./tooling/setup
 
       - name: Install Vercel CLI
-        run: pnpm i -g vercel
+        run: bun i -g vercel
 
       - name: Pull Vercel env info
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
