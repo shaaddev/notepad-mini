@@ -124,9 +124,9 @@ export function NotepadGuest() {
                 title: generatedTitle,
                 updatedAt: now,
               }
-            : n
-        )
-      )
+            : n,
+        ),
+      ),
     );
   }
 
@@ -163,7 +163,7 @@ export function NotepadGuest() {
                         className={cn(
                           "flex flex-col items-start py-1",
                           n.id === activeId &&
-                            "bg-neutral-400/50 dark:bg-neutral-700/60"
+                            "bg-neutral-400/50 dark:bg-neutral-700/60",
                         )}
                         onClick={() => setActiveId(n.id)}
                       >
@@ -177,7 +177,7 @@ export function NotepadGuest() {
                           setNotes((prev) => prev.filter((x) => x.id !== n.id));
                           if (activeId === n.id) {
                             const remaining = notes.filter(
-                              (x) => x.id !== n.id
+                              (x) => x.id !== n.id,
                             );
                             setActiveId(remaining[0]?.id ?? null);
                           }

@@ -28,7 +28,7 @@ export function NotepadServerView({ notes }: { notes: Note[] }) {
   const { state } = useSidebar();
   const sidebarOpen = state === "expanded";
   const [activeId, setActiveId] = React.useState<number | null>(
-    notes[0]?.id ?? null
+    notes[0]?.id ?? null,
   );
   const [allNotes, setAllNotes] = React.useState<Note[]>(notes);
   const active = allNotes.find((n) => n.id === activeId) || null;
@@ -58,7 +58,7 @@ export function NotepadServerView({ notes }: { notes: Note[] }) {
     const title =
       rawTitle.length > 0 ? rawTitle + (hasMore ? "..." : "") : "Untitled";
     setAllNotes((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, content: trimmed, title } : n))
+      prev.map((n) => (n.id === id ? { ...n, content: trimmed, title } : n)),
     );
     await fetch(`/api/notes/${id}`, {
       method: "PATCH",
@@ -104,7 +104,7 @@ export function NotepadServerView({ notes }: { notes: Note[] }) {
                         className={cn(
                           "flex flex-col items-start py-1",
                           n.id === activeId &&
-                            "bg-neutral-400/50 dark:bg-neutral-700/60"
+                            "bg-neutral-400/50 dark:bg-neutral-700/60",
                         )}
                         onClick={() => setActiveId(n.id)}
                       >
