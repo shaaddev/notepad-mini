@@ -90,6 +90,12 @@ export function NotepadServerView({ notes }: { notes: Note[] }) {
             <SidebarGroup className="h-full p-0">
               <div className="flex items-center justify-between px-3 py-2 border-b border-neutral-300 dark:border-neutral-800 sticky top-0 bg-neutral-200 dark:bg-neutral-900 z-10">
                 <SidebarGroupLabel className="px-0">Notes</SidebarGroupLabel>
+                <button
+                  className="text-xs px-2 py-1 rounded-md bg-neutral-300 dark:bg-neutral-800 hover:bg-neutral-400/60 dark:hover:bg-neutral-700/60"
+                  onClick={() => createNote("")}
+                >
+                  New
+                </button>
               </div>
               <ScrollArea className="h-[calc(500px-2.5rem)]">
                 <SidebarMenu className="p-2">
